@@ -1,0 +1,19 @@
+actor Player
+actor Ticker
+
+usecase Feed
+usecase Train
+usecase Clean
+
+usecase IncreaseHunger
+usecase DecreaseHappiness
+usecase DecreaseTraining
+
+
+Player --> Feed
+Player --> Train
+Player --> Clean
+
+Ticker --> IncreaseHunger
+Ticker --> DecreaseHappiness
+Ticker --> DecreaseTraining

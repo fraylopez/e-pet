@@ -1,0 +1,47 @@
+class Pet
+
+class Hunger {
+  value:Range[0,100]
+}
+class Happyness{
+  value: Range[0,100]
+}
+class Training{
+  value: Range[0,100]
+}
+
+
+
+class Turn
+class Player
+class Game
+class Resource
+
+class Food
+class Treat
+class Soap
+
+
+Hunger -up-|> Need
+Happyness -up-|> Need
+Training -up-|> Need
+
+Game *--> Level
+Level *--> Turn
+Level *--> Difficulty
+Difficulty --> Need : defines
+Difficulty --> Resource : defines
+
+Turn *--> Player
+Turn *--> Pet
+Turn *--> Resource : renew
+Player *--> Resource : manages
+Pet --> Resource : consumes
+Pet *--> Need
+
+Resource --> Need : satisfies
+
+Food -up-|> Resource
+Treat -up-|> Resource
+Soap -up-|> Resource
+
