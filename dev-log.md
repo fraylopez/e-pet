@@ -8,3 +8,5 @@
 - TDD the Requirements
 - add DoNothing use case
 
+- Train effect should increase hunger!
+

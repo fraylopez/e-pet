@@ -6,7 +6,7 @@ class Hunger {
 class Happyness{
   value: Range[0,100]
 }
-class Training{
+class Health{
   value: Range[0,100]
 }
 
@@ -24,7 +24,7 @@ class Soap
 
 Hunger -up-|> Need
 Happyness -up-|> Need
-Training -up-|> Need
+Health -up-|> Need
 
 Game *--> Level
 Level *--> Turn
