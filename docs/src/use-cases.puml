@@ -4,6 +4,7 @@ actor Ticker
 usecase Feed
 usecase Train
 usecase Clean
+usecase DoNothing
 
 usecase IncreaseHunger
 usecase DecreaseHappiness
@@ -13,6 +14,7 @@ usecase DecreaseTraining
 Player --> Feed
 Player --> Train
 Player --> Clean
+Player --> DoNothing
 
 Ticker --> IncreaseHunger
 Ticker --> DecreaseHappiness
