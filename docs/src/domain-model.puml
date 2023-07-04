@@ -35,9 +35,13 @@ Difficulty --> Resource : defines
 Turn *--> Player
 Turn *--> Pet
 Turn *--> Resource : renew
-Player *--> Resource : manages
-Pet --> Resource : consumes
-Pet *--> Need
+Pet *--> Need : has
+Player --> Action : performs
+Action --> Resource : consumes
+
+Feed -up-|> Action
+Train -up-|> Action
+Clean -up-|> Action
 
 Resource --> Need : satisfies
 
