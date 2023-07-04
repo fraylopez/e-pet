@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { Pet } from "../src/Pet";
 
 describe('Pet', () => {
   it('should start with value 50 hunger', () => {
@@ -21,30 +22,3 @@ describe('Pet', () => {
 });
 
 
-class Pet {
-
-  constructor(
-    private hunger: number = 50,
-    private happyness: number = 50,
-    private health: number = 50,
-
-  ) { }
-
-  getHunger(): number {
-    return this.hunger;
-  }
-
-  getHappyness(): number {
-    return this.happyness;
-  }
-
-  getHealth(): number {
-    return this.health;
-  }
-
-
-  deltaHunger(delta: number) {
-    this.hunger += delta;
-  }
-
-}
