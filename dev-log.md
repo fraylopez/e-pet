@@ -5,3 +5,5 @@
 - Setup Node/Typescript project
 - Setup test environment
 
+- TDD the Requirements
+
