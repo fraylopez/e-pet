@@ -1,0 +1,25 @@
+{
+  ////////////////////// mocha explorer
+  "mochaExplorer.env": {
+    "NODE_ENV": "test",
+  },
+  "mochaExplorer.require": [
+    "ts-node/register",
+  ],
+  // "mochaExplorer.timeout": 120000, // from mocharc.js
+  "testExplorer.codeLens": true,
+  "testExplorer.gutterDecoration": true,
+  "testExplorer.sort": "byLocationWithSuitesFirst",
+  "testExplorer.mergeSuites": true,
+  "testExplorer.hideEmptyLog": false,
+  "testExplorer.errorDecoration": true,
+  "mochaExplorer.fullTrace": true,
+  // "mochaExplorer.esmLoader": true,
+  "testExplorer.showOnRun": true,
+  // "mochaExplorer.debuggerConfig": "Mocha Explorer",
+  // "mochaExplorer.retries": 1,
+  "mochaExplorer.exit": true,
+  "mochaExplorer.files": "test/**/*.test.ts",
+  // "testExplorer.useNativeTesting": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+}
