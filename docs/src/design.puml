@@ -1,0 +1,96 @@
+@startuml Design
+
+class GameController {
+  +update()
+
+  +feed()
+  +train()
+  +clean()
+}
+
+abstract class Action
+
+class FeedAction extends Action
+class TrainAction extends Action
+class CleanAction extends Action
+class DoNothingAction extends Action
+
+
+interface GameView {
+  +getPlayerAction(): Promise<Action>
+  +render()
+}
+
+class App{
+  +run()
+  -loop()
+  -handleAction(Action)
+}
+
+App --> Action
+GameView --> Action
+
+class Game {
+  +update()
+
+  +feed()
+  +train()
+  +clean()
+}
+
+class Resources{
+  +update()
+
+  +deltaFood(value)
+  +deltaTreats(value)
+  +deltaSoap(value)
+}
+
+class Pet{
+  +update()
+
+  +feed()
+  +train()
+  +clean()
+}
+
+class GameConfig {
+  levels: LevelConfig[]
+}
+
+class LevelConfig {
+  pet: PetConfig
+  resources: ResourcesConfig
+}
+
+class PetConfig {
+  consumptions
+  actionMods
+}
+
+class ResourcesConfig {
+  renewals
+  actionMods
+}
+
+
+
+Game *--> Resources
+Game *--> Pet
+
+Game *--> GameConfig
+GameConfig *--> LevelConfig
+LevelConfig *--> PetConfig
+LevelConfig *--> ResourcesConfig
+
+GameController --> Game
+
+GameView --> Game
+ConsoleGameView -up-|> GameView
+
+App *--> GameController
+App *--> GameView
+App *--> Game
+
+
+@enduml

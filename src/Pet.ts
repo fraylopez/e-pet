@@ -3,8 +3,28 @@ export class Pet {
     private hunger: number = 50,
     private happyness: number = 50,
     private health: number = 50
-
   ) { }
+
+  update() {
+    this.hunger += 10;
+    this.happyness -= 15;
+    this.health -= 10;
+  }
+
+  feed() {
+    this.hunger -= 30;
+    this.happyness += 5;
+  }
+
+  train() {
+    this.health += 15;
+    this.hunger -= 10;
+  }
+
+  clean() {
+    this.happyness += 25;
+  }
+
 
   getHunger(): number {
     return this.hunger;
@@ -18,16 +38,4 @@ export class Pet {
     return this.health;
   }
 
-
-  deltaHunger(delta: number) {
-    this.hunger += delta;
-  }
-
-  deltaHappyness(delta: number) {
-    this.happyness += delta;
-  }
-
-  deltaHealth(delta: number) {
-    this.health += delta;
-  }
 }
