@@ -1,30 +1,19 @@
+import { PetConfig } from "./PetConfig";
+import { Resources } from "./Resources";
+
 export class Pet {
+  private hunger: number;
+  private happyness: number;
+  private health: number;
+
   constructor(
-    private hunger: number = 50,
-    private happyness: number = 50,
-    private health: number = 50
-  ) { }
-
-  update() {
-    this.hunger += 10;
-    this.happyness -= 15;
-    this.health -= 10;
+    private readonly config: PetConfig,
+    private readonly resources: Resources
+  ) {
+    this.hunger = this.config.initial.hunger;
+    this.happyness = this.config.initial.happyness;
+    this.health = this.config.initial.health;
   }
-
-  feed() {
-    this.hunger -= 30;
-    this.happyness += 5;
-  }
-
-  train() {
-    this.health += 15;
-    this.hunger -= 10;
-  }
-
-  clean() {
-    this.happyness += 25;
-  }
-
 
   getHunger(): number {
     return this.hunger;
@@ -38,4 +27,36 @@ export class Pet {
     return this.health;
   }
 
+  update() {
+    this.hunger += this.config.consumptions.hunger;
+    this.happyness += this.config.consumptions.happyness;
+    this.health += this.config.consumptions.health;
+  }
+
+  feed() {
+    this.applyMods(this.config.effects.feed);
+    this.resources.consumeFood();
+  }
+
+  train() {
+    this.applyMods(this.config.effects.train);
+    this.resources.consumeTreat();
+  }
+
+  clean() {
+    this.applyMods(this.config.effects.clean);
+    this.resources.consumeSoap();
+  }
+
+  private applyMods(modifiers: Stats) {
+    this.hunger += modifiers.hunger;
+    this.happyness += modifiers.happyness;
+    this.health += modifiers.health;
+  }
+}
+
+export interface Stats {
+  hunger: number,
+  happyness: number,
+  health: number,
 }
