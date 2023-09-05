@@ -1,7 +1,8 @@
 import { expect } from "chai";
-import { Pet } from "../src/Pet";
+import { Pet } from "../../src/models/Pet";
+import { TestName } from "../utils/TestName";
 
-describe(`${Pet.name}`, () => {
+describe(`${TestName(__dirname, Pet)}`, () => {
 
   describe('initialization', () => {
 

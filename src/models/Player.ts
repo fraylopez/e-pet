@@ -1,5 +1,3 @@
-import { Pet } from "./Pet";
-
 interface IPlayerConfig {
   initialResources: {
     food: number,

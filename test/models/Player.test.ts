@@ -1,7 +1,8 @@
 import { expect } from "chai";
-import { Player } from "../src/Player";
+import { Player } from "../../src/models/Player";
+import { TestName } from "../utils/TestName";
 
-describe(`${Player.name}`, () => {
+describe(`${TestName(__dirname, Player)}`, () => {
   describe('initialization', () => {
 
     it('should start with value 10 food', () => {
