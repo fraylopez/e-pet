@@ -1,63 +1,65 @@
 import { expect } from "chai";
-import { Player } from "../../src/models/Player";
 import { TestName } from "../utils/TestName";
+import { ResourcesConfigMother } from "./ResourcesConfigMother";
+import { Resources } from "../../src/models/Resources";
 
-describe(`${TestName(__dirname, Player)}`, () => {
+describe(`${TestName(__dirname, Resources)}`, () => {
+  const initial = ResourcesConfigMother.initialBatch();
   describe('initialization', () => {
 
-    it('should start with value 10 food', () => {
+    it('should start with value initial food', () => {
       const player = PlayerBuilder.new();
-      expect(player.getFood()).equal(10);
+      expect(player.getFood()).equal(initial.food);
     });
 
-    it('should start with value 10 treats', () => {
+    it('should start with value initial treats', () => {
       const player = PlayerBuilder.new();
-      expect(player.getTreats()).equal(10);
+      expect(player.getTreats()).equal(initial.treat);
     });
 
-    it('should start with value 10 soap', () => {
+    it('should start with value initial soap', () => {
       const player = PlayerBuilder.new();
-      expect(player.getSoap()).equal(10);
+      expect(player.getSoap()).equal(initial.soap);
     });
   });
 
   describe('tick update', () => {
     it("should increase food on tick update", () => {
       const player = PlayerBuilder.new();
-      player.update({ food: 10, soap: 10, treat: 10 });
-      expect(player.getFood()).greaterThan(10);
+      player.update();
+      expect(player.getFood()).greaterThan(initial.food);
     });
 
     it("should increase treats on tick update", () => {
       const player = PlayerBuilder.new();
-      player.update({ food: 10, soap: 10, treat: 10 });
-      expect(player.getTreats()).greaterThan(10);
+      player.update();
+      expect(player.getTreats()).greaterThan(initial.treat);
     });
 
     it("should increase soap on tick update", () => {
       const player = PlayerBuilder.new();
-      player.update({ food: 10, soap: 10, treat: 10 });
-      expect(player.getSoap()).greaterThan(10);
+      player.update();
+      expect(player.getSoap()).greaterThan(initial.soap);
     });
   });
 
   describe('actions', () => {
-    it("should decrease food on feed", () => {
+    it("should consume food on feed", () => {
       const player = PlayerBuilder.new();
       player.feed();
-      expect(player.getFood()).lessThan(10);
+      expect(player.getFood()).lessThan(initial.food);
     });
 
-    it("should decrease treats on train", () => {
+    it("should consume treats on train", () => {
       const player = PlayerBuilder.new();
       player.train();
-      expect(player.getTreats()).lessThan(10);
+      expect(player.getTreats()).lessThan(initial.treat);
     });
 
-    it("should decrease soap on clean", () => {
+    it("should consume soap on clean", () => {
       const player = PlayerBuilder.new();
       player.clean();
-      expect(player.getSoap()).lessThan(10);
+      expect(player.getSoap()).lessThan(initial.soap);
     });
   });
 });
@@ -65,23 +67,6 @@ describe(`${TestName(__dirname, Player)}`, () => {
 
 class PlayerBuilder {
   static new() {
-    return new Player({
-      initialResources: {
-        food: 100,
-        treat: 100,
-        soap: 100,
-      },
-      renewalRate: {
-        food: 1,
-        treat: 1,
-        soap: 1,
-      },
-      consumptions: {
-        feed: 1,
-        train: 1,
-        clean: 1,
-      }
-    });
+    return new Resources(ResourcesConfigMother.default());
   }
 }
-

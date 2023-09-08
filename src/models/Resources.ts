@@ -1,13 +1,12 @@
-import { ResourceConfig } from "./ResourceConfig";
+import { ResourcesConfig } from "./ResourcesConfig";
 
 export class Resources {
-
   private food: number;
   private soap: number;
   private treat: number;
 
   constructor(
-    private readonly config: ResourceConfig
+    private readonly config: ResourcesConfig
   ) {
     this.food = this.config.initial.food;
     this.soap = this.config.initial.soap;
@@ -26,13 +25,13 @@ export class Resources {
     return this.treat;
   }
 
-  consumeSoap() {
+  clean() {
     this.soap += this.config.consumptions.clean;
   }
-  consumeTreat() {
+  train() {
     this.treat += this.config.consumptions.train;
   }
-  consumeFood() {
+  feed() {
     this.food += this.config.consumptions.feed;
   }
 

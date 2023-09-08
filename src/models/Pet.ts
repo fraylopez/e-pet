@@ -35,17 +35,17 @@ export class Pet {
 
   feed() {
     this.applyMods(this.config.effects.feed);
-    this.resources.consumeFood();
+    this.resources.feed();
   }
 
   train() {
     this.applyMods(this.config.effects.train);
-    this.resources.consumeTreat();
+    this.resources.train();
   }
 
   clean() {
     this.applyMods(this.config.effects.clean);
-    this.resources.consumeSoap();
+    this.resources.clean();
   }
 
   private applyMods(modifiers: Stats) {

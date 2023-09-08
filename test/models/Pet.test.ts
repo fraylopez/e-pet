@@ -1,6 +1,10 @@
 import { expect } from "chai";
 import { Pet } from "../../src/models/Pet";
 import { TestName } from "../utils/TestName";
+import { PetConfigMother } from "./PetConfigMother";
+import { ResourcesConfigMother } from "./ResourcesConfigMother";
+import { ResourcesConfig } from "../../src/models/ResourcesConfig";
+import { Resources } from "../../src/models/Resources";
 
 describe(`${TestName(__dirname, Pet)}`, () => {
 
@@ -77,41 +81,11 @@ describe(`${TestName(__dirname, Pet)}`, () => {
 
 class PetBuilder {
   static new() {
-    return new Pet(PetConfig.new());
+    return new Pet(
+      PetConfigMother.new(),
+      new Resources(ResourcesConfigMother.default()),
+    );
   }
 }
 
-class PetConfig {
-  static new() {
-    return {
-      initial: {
-        hunger: 50,
-        happyness: 50,
-        health: 50,
-      },
-      effects: {
-        feed: {
-          hunger: -30,
-          happyness: 5,
-          health: 0,
-        },
-        train: {
-          hunger: -10,
-          health: 15,
-          happyness: 0,
-        },
-        clean: {
-          happyness: 25,
-          hunger: 10,
-          health: 0,
-        },
-      },
-      consumptions: {
-        hunger: 10,
-        happyness: -15,
-        health: -10,
-      },
-    };
-  }
-}
 

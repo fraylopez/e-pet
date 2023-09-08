@@ -1,7 +1,7 @@
 import { PetConfig } from "./PetConfig";
-import { ResourceConfig } from "./ResourceConfig";
+import { ResourcesConfig } from "./ResourcesConfig";
 
 export interface GameConfig {
-  resources: ResourceConfig;
+  resources: ResourcesConfig;
   pet: PetConfig;
 }
