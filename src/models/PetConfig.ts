@@ -1,4 +1,4 @@
-import { Stats } from "./Pet";
+import { Stats } from "./Stats";
 
 export interface PetConfig {
   initial: Stats;

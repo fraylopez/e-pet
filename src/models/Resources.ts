@@ -1,3 +1,4 @@
+import { ResourceBatch } from "./ResourceBatch";
 import { ResourcesConfig } from "./ResourcesConfig";
 
 export class Resources {
@@ -35,9 +36,9 @@ export class Resources {
     this.food += this.config.consumptions.feed;
   }
 
-  update() {
-    this.food += this.config.renewalRate.food;
-    this.soap += this.config.renewalRate.soap;
-    this.treat += this.config.renewalRate.treat;
+  update(deltas: Partial<ResourceBatch>) {
+    this.food += deltas.food || 0;
+    this.soap += deltas.soap || 0;
+    this.treat += deltas.treat || 0;
   }
 }

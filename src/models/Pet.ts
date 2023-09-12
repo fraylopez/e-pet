@@ -1,5 +1,6 @@
 import { PetConfig } from "./PetConfig";
 import { Resources } from "./Resources";
+import { Stats } from "./Stats";
 
 export class Pet {
   private hunger: number;
@@ -8,7 +9,6 @@ export class Pet {
 
   constructor(
     private readonly config: PetConfig,
-    private readonly resources: Resources
   ) {
     this.hunger = this.config.initial.hunger;
     this.happyness = this.config.initial.happyness;
@@ -27,25 +27,22 @@ export class Pet {
     return this.health;
   }
 
-  update() {
-    this.hunger += this.config.consumptions.hunger;
-    this.happyness += this.config.consumptions.happyness;
-    this.health += this.config.consumptions.health;
+  update(deltas: Partial<Stats>) {
+    this.hunger += deltas.hunger || 0;
+    this.happyness += deltas.happyness || 0;
+    this.health += deltas.health || 0;
   }
 
   feed() {
     this.applyMods(this.config.effects.feed);
-    this.resources.feed();
   }
 
   train() {
     this.applyMods(this.config.effects.train);
-    this.resources.train();
   }
 
   clean() {
     this.applyMods(this.config.effects.clean);
-    this.resources.clean();
   }
 
   private applyMods(modifiers: Stats) {
@@ -55,8 +52,4 @@ export class Pet {
   }
 }
 
-export interface Stats {
-  hunger: number,
-  happyness: number,
-  health: number,
-}
+

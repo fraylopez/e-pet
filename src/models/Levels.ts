@@ -40,9 +40,9 @@ export class Levels {
 
   getConsumptions() {
     return {
-      feed: 1,
-      train: 1,
-      clean: 1,
+      hunger: 10,
+      health: -10,
+      happyness: -15,
     };
   }
 

@@ -1,7 +1,7 @@
 import { TestName } from "../utils/TestName";
 import { Levels } from "../../src/models/Levels";
 import { expect } from "chai";
-import { ResourcesConfigMother } from "./ResourcesConfigMother";
+import { LevelsMother } from "./LevelsMother";
 
 describe(`${TestName(__dirname, Levels)}`, () => {
   it('should return the current level', () => {
@@ -35,23 +35,6 @@ describe(`${TestName(__dirname, Levels)}`, () => {
 
   it('should return the return the consumptions for the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.getConsumptions()).deep.equal({ feed: 1, train: 1, clean: 1 });
+    expect(levels.getConsumptions()).deep.equal({ hunger: 10, health: -10, happyness: -15 });
   });
-
 });
-
-
-
-class LevelsMother {
-  static new(numberOfLevels: number = 1) {
-    const initial = ResourcesConfigMother.initialBatch();
-    const levels = new Array(numberOfLevels).fill(0).map((_, i) => {
-      return {
-        renewalRate: ResourcesConfigMother.renewalRate(),
-        consumptions: ResourcesConfigMother.consumptions(),
-      };
-    });
-
-    return new Levels({ initial, levels });
-  }
-}

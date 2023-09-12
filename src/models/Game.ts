@@ -1,14 +1,17 @@
 import { GameConfig } from "./GameConfig";
+import { Levels } from "./Levels";
 import { Pet } from "./Pet";
 import { Resources } from "./Resources";
 
 export class Game {
   private readonly pet: Pet;
   private readonly resources: Resources;
+  private readonly levels: Levels;
 
   constructor(gameConfig: GameConfig) {
     this.resources = new Resources(gameConfig.resources);
-    this.pet = new Pet(gameConfig.pet, this.resources);
+    this.pet = new Pet(gameConfig.pet);
+    this.levels = new Levels(gameConfig.levels);
   }
 
   isGameOver(): boolean {
@@ -41,17 +44,20 @@ export class Game {
 
   feed(): void {
     this.pet.feed();
+    this.resources.feed();
   }
   train(): void {
     this.pet.train();
+    this.resources.train();
   }
   clean(): void {
     this.pet.clean();
+    this.resources.clean();
   }
 
   update(): void {
-    this.pet.update();
-    this.resources.update();
+    this.pet.update(this.levels.getConsumptions());
+    this.resources.update(this.levels.getResources());
   }
 }
 
