@@ -1,10 +1,8 @@
 import { Pet } from "../../src/models/Pet";
-import { PetConfigMother } from "./PetConfigMother";
+import { LevelsMother } from "./LevelsMother";
 
 export class PetMother {
   static new() {
-    return new Pet(
-      PetConfigMother.new(),
-    );
+    return new Pet(LevelsMother.new());
   }
 }

@@ -1,11 +1,8 @@
-import { ResourceBatch } from "./ResourceBatch";
+import { PetConfig } from "./PetConfig";
+import { ResourcesConfig } from "./ResourcesConfig";
 
 
 export interface Level {
-  renewalRate: ResourceBatch;
-  consumptions: {
-    feed: number;
-    train: number;
-    clean: number;
-  };
+  pet: PetConfig;
+  resources: ResourcesConfig;
 }

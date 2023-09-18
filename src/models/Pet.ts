@@ -1,5 +1,4 @@
-import { PetConfig } from "./PetConfig";
-import { Resources } from "./Resources";
+import { Levels } from "./Levels";
 import { Stats } from "./Stats";
 
 export class Pet {
@@ -8,11 +7,11 @@ export class Pet {
   private health: number;
 
   constructor(
-    private readonly config: PetConfig,
+    private readonly levels: Levels,
   ) {
-    this.hunger = this.config.initial.hunger;
-    this.happyness = this.config.initial.happyness;
-    this.health = this.config.initial.health;
+    this.hunger = this.levels.getPetInitialStats().hunger;
+    this.happyness = this.levels.getPetInitialStats().happyness;
+    this.health = this.levels.getPetInitialStats().health;
   }
 
   getHunger(): number {
@@ -34,15 +33,15 @@ export class Pet {
   }
 
   feed() {
-    this.applyMods(this.config.effects.feed);
+    this.applyMods(this.levels.getEffects().feed);
   }
 
   train() {
-    this.applyMods(this.config.effects.train);
+    this.applyMods(this.levels.getEffects().train);
   }
 
   clean() {
-    this.applyMods(this.config.effects.clean);
+    this.applyMods(this.levels.getEffects().clean);
   }
 
   private applyMods(modifiers: Stats) {

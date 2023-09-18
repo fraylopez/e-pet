@@ -1,3 +1,4 @@
+import { Levels } from "./Levels";
 import { ResourceBatch } from "./ResourceBatch";
 import { ResourcesConfig } from "./ResourcesConfig";
 
@@ -7,11 +8,11 @@ export class Resources {
   private treat: number;
 
   constructor(
-    private readonly config: ResourcesConfig
+    private readonly levels: Levels,
   ) {
-    this.food = this.config.initial.food;
-    this.soap = this.config.initial.soap;
-    this.treat = this.config.initial.treat;
+    this.food = this.levels.getInitialResources().food;
+    this.soap = this.levels.getInitialResources().soap;
+    this.treat = this.levels.getInitialResources().treat;
   }
 
   getFood(): number {
@@ -27,13 +28,13 @@ export class Resources {
   }
 
   clean() {
-    this.soap += this.config.consumptions.clean;
+    this.soap += this.levels.getCosts().clean;
   }
   train() {
-    this.treat += this.config.consumptions.train;
+    this.treat += this.levels.getCosts().train;
   }
   feed() {
-    this.food += this.config.consumptions.feed;
+    this.food += this.levels.getCosts().feed;
   }
 
   update(deltas: Partial<ResourceBatch>) {

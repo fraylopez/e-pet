@@ -5,11 +5,11 @@ export class ResourcesConfigMother {
     return {
       initial: this.initialBatch(),
       renewalRate: this.renewalRate(),
-      consumptions: this.consumptions(),
-    };
+      costs: this.costs(),
+    } as ResourcesConfig;
   };
 
-  static initialBatch(overrides: Partial<ResourcesConfig> = {}) {
+  private static initialBatch(overrides: Partial<ResourcesConfig> = {}) {
     return {
       food: 100,
       treat: 100,
@@ -18,7 +18,7 @@ export class ResourcesConfigMother {
     };
   }
 
-  static renewalRate(overrides: Partial<ResourcesConfig> = {}) {
+  private static renewalRate(overrides: Partial<ResourcesConfig> = {}) {
     return {
       food: 1,
       treat: 1,
@@ -27,7 +27,7 @@ export class ResourcesConfigMother {
     };
   }
 
-  static consumptions(overrides: Partial<ResourcesConfig> = {}) {
+  private static costs(overrides: Partial<ResourcesConfig> = {}) {
     return {
       feed: -1,
       train: -1,

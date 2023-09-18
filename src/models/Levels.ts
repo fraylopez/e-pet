@@ -1,6 +1,8 @@
 import { LevelsConfig } from "./LevelsConfig";
 
 export class Levels {
+
+
   private _current: number;
   private iteration: number;
   constructor(
@@ -38,6 +40,22 @@ export class Levels {
     };
   }
 
+  getInitialResources() {
+    return {
+      food: 10,
+      soap: 10,
+      treat: 10,
+    };
+  }
+
+  getPetInitialStats() {
+    return {
+      hunger: 10,
+      health: 10,
+      happyness: 10,
+    };
+  }
+
   getConsumptions() {
     return {
       hunger: 10,
@@ -46,8 +64,37 @@ export class Levels {
     };
   }
 
+  getCosts() {
+    return {
+      feed: -8,
+      train: -6,
+      clean: -6,
+    };
+  }
+
+  getEffects() {
+    return {
+      feed: {
+        health: 0,
+        happyness: 5,
+        hunger: -30,
+      },
+      train: {
+        hunger: -10,
+        health: 10,
+        happyness: 0,
+      },
+      clean: {
+        happyness: 25,
+        health: 0,
+        hunger: 0,
+      },
+    };
+  }
+
+
   private get lastLevel() {
-    return this.levelConfig.levels.length;
+    return this.levelConfig.length;
   }
 }
 

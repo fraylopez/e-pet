@@ -9,9 +9,9 @@ export class Game {
   private readonly levels: Levels;
 
   constructor(gameConfig: GameConfig) {
-    this.resources = new Resources(gameConfig.resources);
-    this.pet = new Pet(gameConfig.pet);
     this.levels = new Levels(gameConfig.levels);
+    this.resources = new Resources(this.levels);
+    this.pet = new Pet(this.levels);
   }
 
   isGameOver(): boolean {

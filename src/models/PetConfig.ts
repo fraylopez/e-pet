@@ -2,14 +2,18 @@ import { Stats } from "./Stats";
 
 export interface PetConfig {
   initial: Stats;
-  effects: {
-    feed: Stats;
-    train: Stats;
-    clean: Stats;
-  };
-  consumptions: {
-    hunger: number;
-    happyness: number;
-    health: number;
-  };
+  effects: Effects;
+  consumptions: Consumptions;
 }
+
+interface Effects {
+  feed: Stats;
+  train: Stats;
+  clean: Stats;
+};
+
+interface Consumptions {
+  hunger: number;
+  happyness: number;
+  health: number;
+};
