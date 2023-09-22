@@ -80,6 +80,30 @@ describe(`${TestName(__dirname, Pet)}`, () => {
       pet.clean();
       expect(pet.getHappyness()).greaterThan(initialHappyness);
     });
+
+    it("should die when hunger is 100 or greater", () => {
+      const pet = PetMother.new();
+      for (let i = 0; i < 100; i++) {
+        pet.update();
+      }
+      expect(pet.isDead()).equals(true);
+    });
+
+    it("should die when happyness is 0 or less", () => {
+      const pet = PetMother.new();
+      for (let i = 0; i < 100; i++) {
+        pet.update();
+      }
+      expect(pet.isDead()).equals(true);
+    });
+
+    it("should die when health is 0 or less", () => {
+      const pet = PetMother.new();
+      for (let i = 0; i < 100; i++) {
+        pet.update();
+      }
+      expect(pet.isDead()).equals(true);
+    });
   });
 });
 
