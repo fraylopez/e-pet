@@ -27,7 +27,6 @@ export class Levels {
     return this;
   }
 
-
   next() {
     if (
       this._iteration >= this.getNumberOfIterations() &&
@@ -84,7 +83,6 @@ export class Levels {
   getCurrentLevel() {
     return this.levelConfig[this.currentLevelIndex - 1];
   }
-
 
   private get numOfLevels() {
     return this.levelConfig.length;
