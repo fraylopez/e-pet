@@ -9,9 +9,9 @@ export class Pet {
   constructor(
     private readonly levels: Levels,
   ) {
-    this.hunger = this.levels.getPetInitialStats().hunger;
-    this.happyness = this.levels.getPetInitialStats().happyness;
-    this.health = this.levels.getPetInitialStats().health;
+    this.hunger = this.levels.initialHunger;
+    this.happyness = this.levels.initialHappyness;
+    this.health = this.levels.initialHealth;
   }
 
   getHunger(): number {
@@ -31,21 +31,21 @@ export class Pet {
   }
 
   update() {
-    this.hunger = Math.min(100, this.hunger + this.levels.getConsumptions().hunger);
-    this.happyness = Math.max(0, this.happyness + this.levels.getConsumptions().happyness);
-    this.health = Math.max(0, this.health + this.levels.getConsumptions().health);
+    this.hunger = Math.min(100, this.hunger + this.levels.hungerConsumption);
+    this.happyness = Math.max(0, this.happyness + this.levels.happynessConsumption);
+    this.health = Math.max(0, this.health + this.levels.healthConsumption);
   }
 
   feed() {
-    this.applyMods(this.levels.getEffects().feed);
+    this.applyMods(this.levels.feedEffect);
   }
 
   train() {
-    this.applyMods(this.levels.getEffects().train);
+    this.applyMods(this.levels.trainEffect);
   }
 
   clean() {
-    this.applyMods(this.levels.getEffects().clean);
+    this.applyMods(this.levels.cleanEffect);
   }
 
   private applyMods(modifiers: Stats) {

@@ -28,17 +28,17 @@ describe(`${TestName(__dirname, Levels)}`, () => {
     expect(levels.currentLevelIndex).equal(3);
   });
 
-  it('should return the return the resources for the current level', () => {
+  it('should return the return the renewal rate for the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.getResources().food).greaterThan(0);
-    expect(levels.getResources().treats).greaterThan(0);
-    expect(levels.getResources().soap).greaterThan(0);
+    expect(levels.foodRenewalRate).greaterThan(0);
+    expect(levels.treatsRenewalRate).greaterThan(0);
+    expect(levels.soapRenewalRate).greaterThan(0);
   });
 
   it('should return the return the consumptions for the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.getConsumptions().hunger).greaterThan(0);
-    expect(levels.getConsumptions().health).lessThan(0);
-    expect(levels.getConsumptions().happyness).lessThan(0);
+    expect(levels.hungerConsumption).greaterThan(0);
+    expect(levels.healthConsumption).lessThan(0);
+    expect(levels.happynessConsumption).lessThan(0);
   });
 });

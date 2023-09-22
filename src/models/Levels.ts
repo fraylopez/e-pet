@@ -40,44 +40,76 @@ export class Levels {
     }
   }
 
-  getResources() {
-    return this.getCurrentLevel().resources.renewalRate;
+  get foodRenewalRate() {
+    return this.currentResources.renewalRate.food;
   }
 
-  getInitialResources() {
-    return this.getCurrentLevel().resources.initial;
+  get treatsRenewalRate() {
+    return this.currentResources.renewalRate.treats;
   }
 
-  getPetInitialStats() {
-    return this.getCurrentLevel().pet.initial;
+  get soapRenewalRate() {
+    return this.currentResources.renewalRate.soap;
   }
 
-  getConsumptions() {
-    return this.getCurrentLevel().pet.consumptions;
+  get initialFood() {
+    return this.currentResources.initial.food;
   }
 
-  getCosts() {
-    return this.getCurrentLevel().resources.costs;
+  get initialTreats() {
+    return this.currentResources.initial.treats;
   }
 
-  getEffects() {
-    return {
-      feed: {
-        health: 0,
-        happyness: 5,
-        hunger: -30,
-      },
-      train: {
-        hunger: -10,
-        health: 10,
-        happyness: 0,
-      },
-      clean: {
-        happyness: 25,
-        health: 0,
-        hunger: 0,
-      },
-    };
+  get initialSoap() {
+    return this.currentResources.initial.soap;
+  }
+
+  get hungerConsumption() {
+    return this.pet.consumptions.hunger;
+  }
+
+  get healthConsumption() {
+    return this.pet.consumptions.health;
+  }
+
+  get happynessConsumption() {
+    return this.pet.consumptions.happyness;
+  }
+
+  get initialHunger() {
+    return this.pet.initial.hunger;
+  }
+
+  get initialHealth() {
+    return this.pet.initial.health;
+  }
+
+  get initialHappyness() {
+    return this.pet.initial.happyness;
+  }
+
+  get feedCost() {
+    return this.currentResources.costs.feed;
+  }
+
+  get trainCost() {
+    return this.currentResources.costs.train;
+  }
+
+  get cleanCost() {
+    return this.currentResources.costs.clean;
+  }
+
+  get feedEffect() {
+    return this.pet.effects.feed;
+  }
+
+  get trainEffect() {
+    return this.pet.effects.train;
+  }
+
+  get cleanEffect() {
+    return this.pet.effects.clean;
   }
 
   getCurrentLevel() {
@@ -87,6 +119,12 @@ export class Levels {
   private get numOfLevels() {
     return this.levelConfig.length;
   }
+
+  private get currentResources() {
+    return this.getCurrentLevel().resources;
+  }
+
+  private get pet() {
+    return this.getCurrentLevel().pet;
+  }
 }
-
-

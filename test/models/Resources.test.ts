@@ -44,7 +44,7 @@ describe(`${TestName(__dirname, Resources)}`, () => {
     });
   });
 
-  describe('actions', () => {
+  describe('consumptions', () => {
     it("should consume food on feed", () => {
       const resources = ResourcesMother.new();
       const initialFood = resources.getFood();
@@ -64,6 +64,16 @@ describe(`${TestName(__dirname, Resources)}`, () => {
       const initialSoap = resources.getSoap();
       resources.clean();
       expect(resources.getSoap()).lessThan(initialSoap);
+    });
+
+    it("should not clean if soap is less than required", () => {
+      const resources = ResourcesMother.new();
+      while (resources.getSoap() > 0) {
+        resources.clean();
+      }
+      const currentSoap = resources.getSoap();
+      resources.clean();
+      expect(resources.getSoap()).equal(currentSoap);
     });
   });
 });
