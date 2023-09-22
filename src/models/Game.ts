@@ -26,6 +26,10 @@ export class Game {
     return this.levels.iteration;
   }
 
+  getNumberOfIterations() {
+    return this.levels.getNumberOfIterations();
+  }
+
   getHunger(): number {
     return this.pet.getHunger();
   }

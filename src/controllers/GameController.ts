@@ -13,6 +13,11 @@ export class GameController {
   getIteration() {
     return this.game.getIteration();
   }
+
+  getNumberOfIterations() {
+    return this.game.getNumberOfIterations();
+  }
+
   getLevel() {
     return this.game.getLevel();
   }

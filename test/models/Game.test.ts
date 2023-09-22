@@ -10,4 +10,13 @@ describe(`${TestName(__dirname, Game)}`, () => {
     game.update();
     expect(game.getIteration()).greaterThan(initialIteration);
   });
+
+  it('should increase level on update', () => {
+    const game = GameMother.new(2);
+    const initialLevel = game.getLevel();
+    for (let i = 0; i < game.getNumberOfIterations(); i++) {
+      game.update();
+    }
+    expect(game.getLevel()).greaterThan(initialLevel);
+  });
 });

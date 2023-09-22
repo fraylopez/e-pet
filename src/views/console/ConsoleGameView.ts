@@ -18,7 +18,7 @@ export class ConsoleGameView implements GameView {
     console.log("######### ePet ########");
     console.log("#######################");
     console.log("");
-    console.log(` Level: ${this.gameController.getLevel()} | Iteration: ${this.gameController.getIteration()}`);
+    console.log(` Level: ${this.gameController.getLevel()} | Iteration: ${this.gameController.getIteration()}/${this.gameController.getNumberOfIterations()}`);
     console.log("");
     console.log(` Hunger: ${this.gameController.getHunger()} | Food: ${this.gameController.getFood()}`);
     console.log(` Happyness: ${this.gameController.getHappyness()} | Treats: ${this.gameController.getTreats()}`);

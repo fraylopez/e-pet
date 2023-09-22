@@ -1,8 +1,6 @@
 import { LevelsConfig } from "./LevelsConfig";
 
 export class Levels {
-
-
   private _current: number;
   private _iteration: number;
   constructor(
@@ -20,6 +18,10 @@ export class Levels {
     return this._iteration;
   }
 
+  getNumberOfIterations() {
+    return 10;
+  }
+
 
   startingAt(level: number) {
     this._current = level;
@@ -28,7 +30,10 @@ export class Levels {
 
 
   next() {
-    if (this._iteration >= 10 && this._current < this.lastLevel) {
+    if (
+      this._iteration >= this.getNumberOfIterations() &&
+      this._current < this.lastLevel
+    ) {
       this._current++;
       this._iteration = 1;
     }
