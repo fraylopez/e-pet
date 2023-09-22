@@ -1,14 +1,18 @@
-import { resolve } from "dns";
+import readline from "readline-sync";
 import { GameController } from "../../controllers/GameController";
 import { GameView } from "../GameView";
 
-import readline from "readline-sync";
-import console from "console";
+enum GameOption {
+  FEED = "1",
+  TRAIN = "2",
+  CLEAN = "3",
+}
+
 export class ConsoleGameView implements GameView {
   constructor(
     private readonly gameController: GameController
-  ) {
-  }
+  ) { }
+
   launch(): void {
     console.log("Launching game...");
   }
@@ -62,12 +66,6 @@ export class ConsoleGameView implements GameView {
         console.log("Invalid option");
         return;
     }
-
   }
 }
 
-enum GameOption {
-  FEED = "1",
-  TRAIN = "2",
-  CLEAN = "3",
-}
