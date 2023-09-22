@@ -49,6 +49,18 @@ export class ConsoleGameView implements GameView {
 
   showGameOver(): void {
     console.log("Game over!");
+    console.log(`Your pet died of ${this.getDeathCause()}`);
+  }
+  getDeathCause() {
+    if (this.gameController.getHunger() <= 0) {
+      return "hunger";
+    }
+    if (this.gameController.getHappyness() <= 0) {
+      return "sadness";
+    }
+    if (this.gameController.getHealth() <= 0) {
+      return "illness";
+    }
   }
 
   private handleOption(option: unknown): (() => void) | undefined {

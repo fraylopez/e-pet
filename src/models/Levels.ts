@@ -10,7 +10,7 @@ export class Levels {
     this._iteration = 1;
   }
 
-  get current() {
+  get currentLevelIndex() {
     return this._current;
   }
 
@@ -22,7 +22,6 @@ export class Levels {
     return 10;
   }
 
-
   startingAt(level: number) {
     this._current = level;
     return this;
@@ -32,7 +31,7 @@ export class Levels {
   next() {
     if (
       this._iteration >= this.getNumberOfIterations() &&
-      this._current < this.lastLevel
+      this._current < this.numOfLevels
     ) {
       this._current++;
       this._iteration = 1;
@@ -43,43 +42,23 @@ export class Levels {
   }
 
   getResources() {
-    return {
-      food: 10,
-      soap: 10,
-      treat: 10,
-    };
+    return this.getCurrentLevel().resources.renewalRate;
   }
 
   getInitialResources() {
-    return {
-      food: 10,
-      soap: 10,
-      treat: 10,
-    };
+    return this.getCurrentLevel().resources.initial;
   }
 
   getPetInitialStats() {
-    return {
-      hunger: 10,
-      health: 10,
-      happyness: 10,
-    };
+    return this.getCurrentLevel().pet.initial;
   }
 
   getConsumptions() {
-    return {
-      hunger: 10,
-      health: -10,
-      happyness: -15,
-    };
+    return this.getCurrentLevel().pet.consumptions;
   }
 
   getCosts() {
-    return {
-      feed: -8,
-      train: -6,
-      clean: -6,
-    };
+    return this.getCurrentLevel().resources.costs;
   }
 
   getEffects() {
@@ -102,8 +81,12 @@ export class Levels {
     };
   }
 
+  getCurrentLevel() {
+    return this.levelConfig[this.currentLevelIndex - 1];
+  }
 
-  private get lastLevel() {
+
+  private get numOfLevels() {
     return this.levelConfig.length;
   }
 }

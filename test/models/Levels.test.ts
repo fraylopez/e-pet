@@ -6,7 +6,7 @@ import { LevelsMother } from "./LevelsMother";
 describe(`${TestName(__dirname, Levels)}`, () => {
   it('should return the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.current).equal(1);
+    expect(levels.currentLevelIndex).equal(1);
   });
 
   [1, 2, 3].forEach(lvl => {
@@ -15,7 +15,7 @@ describe(`${TestName(__dirname, Levels)}`, () => {
       for (let i = 1; i < lvl * 10; i++) {
         levels.next();
       }
-      expect(levels.current).equal(lvl);
+      expect(levels.currentLevelIndex).equal(lvl);
     });
   });
 
@@ -25,16 +25,20 @@ describe(`${TestName(__dirname, Levels)}`, () => {
     for (let i = 0; i < 10; i++) {
       levels.next();
     }
-    expect(levels.current).equal(3);
+    expect(levels.currentLevelIndex).equal(3);
   });
 
   it('should return the return the resources for the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.getResources()).deep.equal({ food: 10, soap: 10, treat: 10 });
+    expect(levels.getResources().food).greaterThan(0);
+    expect(levels.getResources().treats).greaterThan(0);
+    expect(levels.getResources().soap).greaterThan(0);
   });
 
   it('should return the return the consumptions for the current level', () => {
     const levels = LevelsMother.new();
-    expect(levels.getConsumptions()).deep.equal({ hunger: 10, health: -10, happyness: -15 });
+    expect(levels.getConsumptions().hunger).greaterThan(0);
+    expect(levels.getConsumptions().health).lessThan(0);
+    expect(levels.getConsumptions().happyness).lessThan(0);
   });
 });

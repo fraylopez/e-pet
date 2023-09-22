@@ -20,7 +20,7 @@ export class Game {
   }
 
   getLevel() {
-    return this.levels.current;
+    return this.levels.currentLevelIndex;
   }
   getIteration() {
     return this.levels.iteration;

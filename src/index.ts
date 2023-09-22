@@ -35,12 +35,12 @@ const config: LevelsConfig = [
       initial: {
         food: 10,
         soap: 10,
-        treat: 10,
+        treats: 10,
       },
       renewalRate: {
         food: 1,
         soap: 1,
-        treat: 1,
+        treats: 1,
       },
       costs: {
         feed: -8,

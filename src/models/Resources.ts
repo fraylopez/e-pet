@@ -12,7 +12,7 @@ export class Resources {
   ) {
     this.food = this.levels.getInitialResources().food;
     this.soap = this.levels.getInitialResources().soap;
-    this.treat = this.levels.getInitialResources().treat;
+    this.treat = this.levels.getInitialResources().treats;
   }
 
   getFood(): number {
@@ -40,6 +40,6 @@ export class Resources {
   update() {
     this.food += this.levels.getResources().food || 0;
     this.soap += this.levels.getResources().soap || 0;
-    this.treat += this.levels.getResources().treat || 0;
+    this.treat += this.levels.getResources().treats || 0;
   }
 }

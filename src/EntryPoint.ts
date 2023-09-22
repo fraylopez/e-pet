@@ -18,13 +18,11 @@ export class EntryPoint {
   }
 
   private async loop() {
-    do {
+    while (!this.controller.isGameOver()) {
       this.gameView.renderState();
       await this.gameView.showOptions();
       this.controller.update();
-      this.loop();
     }
-    while (!this.controller.isGameOver());
     this.gameOver();
   }
 
