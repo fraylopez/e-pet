@@ -37,9 +37,9 @@ export class Resources {
     this.food += this.levels.getCosts().feed;
   }
 
-  update(deltas: Partial<ResourceBatch>) {
-    this.food += deltas.food || 0;
-    this.soap += deltas.soap || 0;
-    this.treat += deltas.treat || 0;
+  update() {
+    this.food += this.levels.getResources().food || 0;
+    this.soap += this.levels.getResources().soap || 0;
+    this.treat += this.levels.getResources().treat || 0;
   }
 }

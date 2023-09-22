@@ -1,21 +1,29 @@
-import { GameConfig } from "./GameConfig";
 import { Levels } from "./Levels";
+import { LevelsConfig } from "./LevelsConfig";
 import { Pet } from "./Pet";
 import { Resources } from "./Resources";
 
 export class Game {
+
   private readonly pet: Pet;
   private readonly resources: Resources;
   private readonly levels: Levels;
 
-  constructor(gameConfig: GameConfig) {
-    this.levels = new Levels(gameConfig.levels);
+  constructor(levels: LevelsConfig) {
+    this.levels = new Levels(levels);
     this.resources = new Resources(this.levels);
     this.pet = new Pet(this.levels);
   }
 
   isGameOver(): boolean {
     return this.pet.getHunger() > 100;
+  }
+
+  getLevel() {
+    return this.levels.current;
+  }
+  getIteration() {
+    return this.levels.iteration;
   }
 
   getHunger(): number {
@@ -50,14 +58,15 @@ export class Game {
     this.pet.train();
     this.resources.train();
   }
+
   clean(): void {
     this.pet.clean();
     this.resources.clean();
   }
 
   update(): void {
-    this.pet.update(this.levels.getConsumptions());
-    this.resources.update(this.levels.getResources());
+    this.pet.update();
+    this.resources.update();
+    this.levels.next();
   }
 }
-

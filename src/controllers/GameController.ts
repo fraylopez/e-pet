@@ -10,9 +10,11 @@ export class GameController {
     return this.game.isGameOver();
   }
 
-
-  update(): void {
-    this.game.update();
+  getIteration() {
+    return this.game.getIteration();
+  }
+  getLevel() {
+    return this.game.getLevel();
   }
 
   getHunger(): number {
@@ -39,6 +41,9 @@ export class GameController {
     return this.game.getTreats();
   }
 
+  update(): void {
+    this.game.update();
+  }
 
   feed(): void {
     this.game.feed();
@@ -51,5 +56,4 @@ export class GameController {
   clean(): void {
     this.game.clean();
   }
-
 }

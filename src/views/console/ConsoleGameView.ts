@@ -1,64 +1,68 @@
+import { resolve } from "dns";
 import { GameController } from "../../controllers/GameController";
 import { GameView } from "../GameView";
 
-import readline from "readline";
+import readline from "readline-sync";
+import console from "console";
 export class ConsoleGameView implements GameView {
-  private readline;
   constructor(
     private readonly gameController: GameController
   ) {
-    this.readline = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
   }
   launch(): void {
     console.log("Launching game...");
   }
 
   renderState(): void {
-    console.log(`Hunger: ${this.gameController.getHunger()} | Food: ${this.gameController.getFood()}`);
-    console.log(`Happyness: ${this.gameController.getHappyness()} | Treats: ${this.gameController.getTreats()}`);
-    console.log(`Health: ${this.gameController.getHealth()} | Soap: ${this.gameController.getSoap()}`);
+    console.log("#######################");
+    console.log("######### ePet ########");
+    console.log("#######################");
+    console.log("");
+    console.log(` Level: ${this.gameController.getLevel()} | Iteration: ${this.gameController.getIteration()}`);
+    console.log("");
+    console.log(` Hunger: ${this.gameController.getHunger()} | Food: ${this.gameController.getFood()}`);
+    console.log(` Happyness: ${this.gameController.getHappyness()} | Treats: ${this.gameController.getTreats()}`);
+    console.log(` Health: ${this.gameController.getHealth()} | Soap: ${this.gameController.getSoap()}`);
+    console.log("");
+    console.log("#######################");
   }
 
-  showOptions(): Promise<void> {
+  showOptions() {
     Object.keys(GameOption).map((option, index) => {
       console.log(`${index + 1}. ${option}`);
     });
 
-    return new Promise((resolve) => {
-      this.readline.question("Choose an option: ", (option) => {
-        this.handleOption(option as GameOption, parseInt(option));
-        resolve();
-      });
-
-    });
+    const option = readline.question("Choose an option: ");
+    const action = this.handleOption(option as unknown);
+    if (action) {
+      action();
+    }
+    else {
+      this.showOptions();
+    }
   }
 
   showGameOver(): void {
     console.log("Game over!");
   }
 
-  private handleOption(option: GameOption, index: number): void {
-    if (isNaN(index)) {
+  private handleOption(option: unknown): (() => void) | undefined {
+    if (isNaN(option as number)) {
       console.log("Invalid option");
       return;
     }
     switch (option) {
       case GameOption.FEED:
-        this.gameController.feed();
-        break;
+        return () => this.gameController.feed();
       case GameOption.TRAIN:
-        this.gameController.train();
-        break;
+        return () => this.gameController.train();
       case GameOption.CLEAN:
-        this.gameController.clean();
-        break;
+        return () => this.gameController.clean();
       default:
         console.log("Invalid option");
-        break;
+        return;
     }
+
   }
 }
 

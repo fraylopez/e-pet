@@ -26,10 +26,10 @@ export class Pet {
     return this.health;
   }
 
-  update(deltas: Partial<Stats>) {
-    this.hunger += deltas.hunger || 0;
-    this.happyness += deltas.happyness || 0;
-    this.health += deltas.health || 0;
+  update() {
+    this.hunger = Math.min(100, this.hunger + this.levels.getConsumptions().hunger);
+    this.happyness = Math.max(0, this.happyness + this.levels.getConsumptions().happyness);
+    this.health = Math.max(0, this.health + this.levels.getConsumptions().health);
   }
 
   feed() {
@@ -45,9 +45,9 @@ export class Pet {
   }
 
   private applyMods(modifiers: Stats) {
-    this.hunger += modifiers.hunger;
-    this.happyness += modifiers.happyness;
-    this.health += modifiers.health;
+    this.hunger = Math.max(0, this.hunger + modifiers.hunger);
+    this.happyness = Math.min(100, this.happyness + modifiers.happyness);
+    this.health = Math.min(100, this.health + modifiers.health);
   }
 }
 

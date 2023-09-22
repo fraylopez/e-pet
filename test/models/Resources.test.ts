@@ -25,22 +25,22 @@ describe(`${TestName(__dirname, Resources)}`, () => {
     it("should increase food on tick update", () => {
       const resources = ResourcesMother.new();
       const initialFood = resources.getFood();
-      resources.update({ food: 1 });
-      expect(resources.getFood()).equal(initialFood + 1);
+      resources.update();
+      expect(resources.getFood()).greaterThan(initialFood);
     });
 
     it("should increase treats on tick update", () => {
       const resources = ResourcesMother.new();
       const initialTreats = resources.getTreats();
-      resources.update({ treat: 1 });
-      expect(resources.getTreats()).equal(initialTreats + 1);
+      resources.update();
+      expect(resources.getTreats()).greaterThan(initialTreats);
     });
 
     it("should increase soap on tick update", () => {
       const resources = ResourcesMother.new();
       const initialSoap = resources.getSoap();
-      resources.update({ soap: 1 });
-      expect(resources.getSoap()).equal(initialSoap + 1);
+      resources.update();
+      expect(resources.getSoap()).greaterThan(initialSoap);
     });
   });
 

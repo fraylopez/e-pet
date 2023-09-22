@@ -26,22 +26,22 @@ describe(`${TestName(__dirname, Pet)}`, () => {
     it("should increase hunger on tick update", () => {
       const pet = PetMother.new();
       const initialHunger = pet.getHunger();
-      pet.update({ hunger: 1 });
-      expect(pet.getHunger()).equal(initialHunger + 1);
+      pet.update();
+      expect(pet.getHunger()).greaterThan(initialHunger);
     });
 
     it("should decrease happyness on tick update", () => {
       const pet = PetMother.new();
       const initialHappyness = pet.getHappyness();
-      pet.update({ happyness: -1 });
-      expect(pet.getHappyness()).equal(initialHappyness - 1);
+      pet.update();
+      expect(pet.getHappyness()).lessThan(initialHappyness);
     });
 
     it("should decrease health on tick update", () => {
       const pet = PetMother.new();
       const initialHealth = pet.getHealth();
-      pet.update({ health: -1 });
-      expect(pet.getHealth()).equal(initialHealth - 1);
+      pet.update();
+      expect(pet.getHealth()).lessThan(initialHealth);
     });
   });
 

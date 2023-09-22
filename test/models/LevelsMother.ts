@@ -4,13 +4,17 @@ import { ResourcesConfigMother } from "./ResourcesConfigMother";
 
 export class LevelsMother {
   static new(numberOfLevels: number = 1) {
-    const levels = new Array(numberOfLevels).fill(0).map((_, i) => {
-      return {
-        pet: PetConfigMother.new(),
-        resources: ResourcesConfigMother.default(),
-      };
-    });
+    return new Levels(this.levelsConfig(numberOfLevels));
+  }
 
-    return new Levels(levels);
+  static levelsConfig(numberOfLevels: number = 1) {
+    return new Array(numberOfLevels).fill(0).map((_, i) => this.levelConfig());
+  }
+
+  private static levelConfig() {
+    return {
+      pet: PetConfigMother.new(),
+      resources: ResourcesConfigMother.default(),
+    };
   }
 }

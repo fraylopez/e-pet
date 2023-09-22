@@ -4,17 +4,22 @@ export class Levels {
 
 
   private _current: number;
-  private iteration: number;
+  private _iteration: number;
   constructor(
     private readonly levelConfig: LevelsConfig,
   ) {
     this._current = 1;
-    this.iteration = 1;
+    this._iteration = 1;
   }
 
   get current() {
     return this._current;
   }
+
+  get iteration() {
+    return this._iteration;
+  }
+
 
   startingAt(level: number) {
     this._current = level;
@@ -23,12 +28,12 @@ export class Levels {
 
 
   next() {
-    if (this.iteration >= 10 && this._current < this.lastLevel) {
+    if (this._iteration >= 10 && this._current < this.lastLevel) {
       this._current++;
-      this.iteration = 1;
+      this._iteration = 1;
     }
     else {
-      this.iteration++;
+      this._iteration++;
     }
   }
 
