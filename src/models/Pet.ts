@@ -26,6 +26,10 @@ export class Pet {
     return this.health;
   }
 
+  isDead(): boolean {
+    return this.health <= 0 || this.hunger >= 100 || this.happyness <= 0;
+  }
+
   update() {
     this.hunger = Math.min(100, this.hunger + this.levels.getConsumptions().hunger);
     this.happyness = Math.max(0, this.happyness + this.levels.getConsumptions().happyness);

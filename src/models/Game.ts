@@ -16,7 +16,7 @@ export class Game {
   }
 
   isGameOver(): boolean {
-    return this.pet.getHunger() > 100;
+    return this.pet.isDead();
   }
 
   getLevel() {

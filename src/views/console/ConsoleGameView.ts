@@ -18,6 +18,7 @@ export class ConsoleGameView implements GameView {
   }
 
   renderState(): void {
+    console.log("");
     console.log("#######################");
     console.log("######### ePet ########");
     console.log("#######################");
