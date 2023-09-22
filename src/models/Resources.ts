@@ -1,6 +1,5 @@
+import assert from "assert";
 import { Levels } from "./Levels";
-import { ResourceBatch } from "./ResourceBatch";
-import { ResourcesConfig } from "./ResourcesConfig";
 
 export class Resources {
   private food: number;
@@ -28,19 +27,18 @@ export class Resources {
   }
 
   clean() {
-    if (this.soap >= Math.abs(this.levels.cleanCost)) {
-      this.soap = Math.max(0, this.soap + this.levels.cleanCost);
-    }
+    assert(this.soap >= Math.abs(this.levels.cleanCost), "Not enough soap");
+    this.soap = Math.max(0, this.soap + this.levels.cleanCost);
   }
+
   train() {
-    if (this.treats >= Math.abs(this.levels.trainCost)) {
-      this.treats = Math.max(0, this.treats + this.levels.trainCost);
-    }
+    assert(this.treats >= Math.abs(this.levels.trainCost), "Not enough treats");
+    this.treats = Math.max(0, this.treats + this.levels.trainCost);
   }
+
   feed() {
-    if (this.food >= Math.abs(this.levels.feedCost)) {
-      this.food = Math.max(0, this.food + this.levels.feedCost);
-    }
+    assert(this.food >= Math.abs(this.levels.feedCost), "Not enough food");
+    this.food = Math.max(0, this.food + this.levels.feedCost);
   }
 
   update() {

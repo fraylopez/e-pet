@@ -72,7 +72,7 @@ describe(`${TestName(__dirname, Resources)}`, () => {
         resources.clean();
       }
       const currentSoap = resources.getSoap();
-      resources.clean();
+      expect(() => resources.clean()).to.throw("Not enough soap");
       expect(resources.getSoap()).equal(currentSoap);
     });
   });
